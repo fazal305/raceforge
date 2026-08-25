@@ -2,7 +2,7 @@
 
 A browser-based arcade racer built with React and Canvas 2D. Procedurally generated tracks, stat-driven cars, waypoint-following AI opponents, and a full menu → race → results loop, with progress saved locally.
 
-**Live:** _link added after deployment_
+**Live:** https://raceforge-game.netlify.app
 **Repo:** https://github.com/fazal305/raceforge
 
 ## Screenshots
@@ -128,7 +128,8 @@ Static build deployed to Netlify.
 
 ```bash
 npm run build
-netlify deploy --prod --dir=dist
+netlify deploy --dir=dist          # deploy
+netlify deploy --prod --dir=dist   # promote straight to production, if your account allows it
 ```
 
 `netlify.toml` in the project root sets the build command, publish directory, and an SPA redirect (`/* → /index.html`) so a direct link or a page refresh on any route still loads the app.
