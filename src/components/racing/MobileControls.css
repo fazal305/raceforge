@@ -1,0 +1,54 @@
+.mobile-controls {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-hud);
+  padding: var(--space-4);
+  align-items: flex-end;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+@media (pointer: coarse) {
+  .mobile-controls {
+    display: flex;
+  }
+}
+
+.mobile-controls__steer,
+.mobile-controls__pedals {
+  display: flex;
+  gap: var(--space-3);
+  pointer-events: auto;
+}
+
+.mobile-controls__btn {
+  width: 68px;
+  height: 68px;
+  border-radius: var(--radius-lg);
+  background: rgba(21, 23, 29, 0.7);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text);
+  font-size: var(--text-xl);
+  font-family: var(--font-display);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  user-select: none;
+}
+
+.mobile-controls__btn:active {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.mobile-controls__btn--brake,
+.mobile-controls__btn--throttle {
+  width: 84px;
+  font-size: var(--text-sm);
+}
+
+.mobile-controls__btn--throttle {
+  background: rgba(242, 121, 43, 0.25);
+}
