@@ -28,55 +28,45 @@ describe("recordRaceResult", () => {
   });
 
   it("tracks a win and increments total races", () => {
-    useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 1,
-        raceTime: 60,
-        bestLapTime: 20,
-      });
+    useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 1,
+      raceTime: 60,
+      bestLapTime: 20,
+    });
     const progression = useGameStore.getState().progression;
     expect(progression.wins).toBe(1);
     expect(progression.totalRaces).toBe(1);
   });
 
   it("only records a best lap time when it improves on the previous one", () => {
-    useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 2,
-        raceTime: 60,
-        bestLapTime: 20,
-      });
-    useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 2,
-        raceTime: 55,
-        bestLapTime: 25,
-      });
+    useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 2,
+      raceTime: 60,
+      bestLapTime: 20,
+    });
+    useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 2,
+      raceTime: 55,
+      bestLapTime: 25,
+    });
     expect(
       useGameStore.getState().progression.bestLapTimesByTrack.harborline,
     ).toBe(20);
   });
 
   it("reports isPersonalBest only when the race time actually improves", () => {
-    const first = useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 2,
-        raceTime: 60,
-        bestLapTime: 20,
-      });
+    const first = useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 2,
+      raceTime: 60,
+      bestLapTime: 20,
+    });
     expect(first.isPersonalBest).toBe(true);
 
-    const second = useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 2,
-        raceTime: 70,
-        bestLapTime: 20,
-      });
+    const second = useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 2,
+      raceTime: 70,
+      bestLapTime: 20,
+    });
     expect(second.isPersonalBest).toBe(false);
   });
 });
@@ -108,13 +98,11 @@ describe("unlockCar", () => {
 
 describe("resetProgress", () => {
   it("restores progression to its initial shape", () => {
-    useGameStore
-      .getState()
-      .recordRaceResult("harborline", {
-        playerPosition: 1,
-        raceTime: 60,
-        bestLapTime: 20,
-      });
+    useGameStore.getState().recordRaceResult("harborline", {
+      playerPosition: 1,
+      raceTime: 60,
+      bestLapTime: 20,
+    });
     useGameStore.getState().resetProgress();
     expect(useGameStore.getState().progression.totalRaces).toBe(0);
     expect(useGameStore.getState().progression.credits).toBe(
