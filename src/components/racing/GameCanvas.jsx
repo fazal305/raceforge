@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import './GameCanvas.css';
+import { useEffect, useRef } from "react";
+import "./GameCanvas.css";
 
 /**
  * Owns nothing but the <canvas> element and keeping its backing store
@@ -20,7 +20,7 @@ export function GameCanvas({ onReady }) {
       const { width, height } = container.getBoundingClientRect();
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext("2d");
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 

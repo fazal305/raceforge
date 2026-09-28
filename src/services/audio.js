@@ -24,7 +24,7 @@ function ensureContext() {
 
 export function initAudio() {
   const context = ensureContext();
-  if (context && context.state === 'suspended') {
+  if (context && context.state === "suspended") {
     context.resume();
   }
 }
@@ -38,7 +38,13 @@ export function setSfxVolume(volume) {
   if (masterGain) masterGain.gain.value = volume;
 }
 
-function playTone({ frequency, duration, type = 'sine', startGain = 0.35, sweepTo }) {
+function playTone({
+  frequency,
+  duration,
+  type = "sine",
+  startGain = 0.35,
+  sweepTo,
+}) {
   if (!sfxEnabled) return;
   const context = ensureContext();
   if (!context) return;
@@ -48,7 +54,10 @@ function playTone({ frequency, duration, type = 'sine', startGain = 0.35, sweepT
   osc.type = type;
   osc.frequency.setValueAtTime(frequency, context.currentTime);
   if (sweepTo) {
-    osc.frequency.exponentialRampToValueAtTime(sweepTo, context.currentTime + duration);
+    osc.frequency.exponentialRampToValueAtTime(
+      sweepTo,
+      context.currentTime + duration,
+    );
   }
   gain.gain.setValueAtTime(startGain, context.currentTime);
   gain.gain.exponentialRampToValueAtTime(0.001, context.currentTime + duration);
@@ -60,14 +69,38 @@ function playTone({ frequency, duration, type = 'sine', startGain = 0.35, sweepT
 }
 
 export const sfx = {
-  countdownBeep: () => playTone({ frequency: 440, duration: 0.15, type: 'square' }),
-  countdownGo: () => playTone({ frequency: 660, duration: 0.35, type: 'square', sweepTo: 880 }),
-  checkpoint: () => playTone({ frequency: 880, duration: 0.12, type: 'triangle' }),
-  lap: () => playTone({ frequency: 660, duration: 0.25, type: 'triangle', sweepTo: 990 }),
-  collision: () => playTone({ frequency: 120, duration: 0.2, type: 'sawtooth', sweepTo: 60, startGain: 0.5 }),
-  finish: () => playTone({ frequency: 523, duration: 0.6, type: 'square', sweepTo: 1046 }),
-  uiClick: () => playTone({ frequency: 320, duration: 0.06, type: 'square', startGain: 0.2 }),
-  uiSelect: () => playTone({ frequency: 520, duration: 0.08, type: 'sine', startGain: 0.25 }),
+  countdownBeep: () =>
+    playTone({ frequency: 440, duration: 0.15, type: "square" }),
+  countdownGo: () =>
+    playTone({ frequency: 660, duration: 0.35, type: "square", sweepTo: 880 }),
+  checkpoint: () =>
+    playTone({ frequency: 880, duration: 0.12, type: "triangle" }),
+  lap: () =>
+    playTone({
+      frequency: 660,
+      duration: 0.25,
+      type: "triangle",
+      sweepTo: 990,
+    }),
+  collision: () =>
+    playTone({
+      frequency: 120,
+      duration: 0.2,
+      type: "sawtooth",
+      sweepTo: 60,
+      startGain: 0.5,
+    }),
+  finish: () =>
+    playTone({ frequency: 523, duration: 0.6, type: "square", sweepTo: 1046 }),
+  uiClick: () =>
+    playTone({
+      frequency: 320,
+      duration: 0.06,
+      type: "square",
+      startGain: 0.2,
+    }),
+  uiSelect: () =>
+    playTone({ frequency: 520, duration: 0.08, type: "sine", startGain: 0.25 }),
 };
 
 export function startEngineHum() {
@@ -75,7 +108,7 @@ export function startEngineHum() {
   if (!context || engineOsc) return;
   engineOsc = context.createOscillator();
   engineGain = context.createGain();
-  engineOsc.type = 'sawtooth';
+  engineOsc.type = "sawtooth";
   engineOsc.frequency.value = 60;
   engineGain.gain.value = 0;
   engineOsc.connect(engineGain);
@@ -86,7 +119,11 @@ export function startEngineHum() {
 export function updateEngineHum(throttle01) {
   if (!engineOsc || !sfxEnabled) return;
   const clamped = Math.max(0, Math.min(1, throttle01));
-  engineOsc.frequency.setTargetAtTime(60 + clamped * 180, ctx.currentTime, 0.05);
+  engineOsc.frequency.setTargetAtTime(
+    60 + clamped * 180,
+    ctx.currentTime,
+    0.05,
+  );
   engineGain.gain.setTargetAtTime(clamped * 0.12, ctx.currentTime, 0.08);
 }
 

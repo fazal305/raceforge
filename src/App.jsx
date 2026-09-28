@@ -1,14 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useGameStore, GAME_STATES } from './state/store.js';
-import { ErrorBoundary } from './components/ErrorBoundary.jsx';
-import { MainMenu } from './components/menu/MainMenu.jsx';
-import { CarSelection } from './components/menu/CarSelection.jsx';
-import { TrackSelection } from './components/menu/TrackSelection.jsx';
-import { RaceScreen } from './components/racing/RaceScreen.jsx';
-import { ResultsScreen } from './components/results/ResultsScreen.jsx';
-import { SettingsScreen } from './components/settings/SettingsScreen.jsx';
+import { useEffect, useState } from "react";
+import { useGameStore, GAME_STATES } from "./state/store.js";
+import { ErrorBoundary } from "./components/ErrorBoundary.jsx";
+import { MainMenu } from "./components/menu/MainMenu.jsx";
+import { CarSelection } from "./components/menu/CarSelection.jsx";
+import { TrackSelection } from "./components/menu/TrackSelection.jsx";
+import { RaceScreen } from "./components/racing/RaceScreen.jsx";
+import { ResultsScreen } from "./components/results/ResultsScreen.jsx";
+import { SettingsScreen } from "./components/settings/SettingsScreen.jsx";
 
-const RACE_STATES = new Set([GAME_STATES.COUNTDOWN, GAME_STATES.RACING, GAME_STATES.PAUSED]);
+const RACE_STATES = new Set([
+  GAME_STATES.COUNTDOWN,
+  GAME_STATES.RACING,
+  GAME_STATES.PAUSED,
+]);
 
 function Screen() {
   const gameState = useGameStore((s) => s.gameState);
@@ -16,7 +20,7 @@ function Screen() {
   const [raceKey, setRaceKey] = useState(0);
 
   const handleExitFromRace = (reason) => {
-    if (reason === 'restart') {
+    if (reason === "restart") {
       setRaceKey((key) => key + 1);
       setGameState(GAME_STATES.COUNTDOWN);
     } else {
@@ -53,7 +57,10 @@ function App() {
   }, [theme]);
 
   useEffect(() => {
-    document.documentElement.classList.toggle('force-reduced-motion', reducedMotion);
+    document.documentElement.classList.toggle(
+      "force-reduced-motion",
+      reducedMotion,
+    );
   }, [reducedMotion]);
 
   return (

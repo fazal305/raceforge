@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Russo+One&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Russo+One&display=swap");
 
 /* ==========================================================================
    Design tokens
@@ -50,9 +50,9 @@
   --radius-pill: 999px;
 
   /* Typography */
-  --font-display: 'Russo One', 'Chakra Petch', system-ui, sans-serif;
-  --font-body: 'Chakra Petch', system-ui, -apple-system, sans-serif;
-  --font-mono: 'Chakra Petch', ui-monospace, monospace;
+  --font-display: "Russo One", "Chakra Petch", system-ui, sans-serif;
+  --font-body: "Chakra Petch", system-ui, -apple-system, sans-serif;
+  --font-mono: "Chakra Petch", ui-monospace, monospace;
 
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
@@ -82,7 +82,7 @@
   --z-toast: 40;
 }
 
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   color-scheme: light;
   --color-background: #f3f4f6;
   --color-background-raised: #ffffff;

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useGameStore, GAME_STATES } from '../../state/store.js';
-import { Button } from '../ui/Button.jsx';
-import { setSfxEnabled, setSfxVolume, sfx } from '../../services/audio.js';
-import './SettingsScreen.css';
+import { useState } from "react";
+import { useGameStore, GAME_STATES } from "../../state/store.js";
+import { Button } from "../ui/Button.jsx";
+import { setSfxEnabled, setSfxVolume, sfx } from "../../services/audio.js";
+import "./SettingsScreen.css";
 
 export function SettingsScreen({ onBack }) {
   const settings = useGameStore((s) => s.settings);
@@ -26,7 +26,7 @@ export function SettingsScreen({ onBack }) {
   };
 
   const handleThemeToggle = () => {
-    updateSettings({ theme: settings.theme === 'dark' ? 'light' : 'dark' });
+    updateSettings({ theme: settings.theme === "dark" ? "light" : "dark" });
     sfx.uiClick();
   };
 
@@ -56,7 +56,11 @@ export function SettingsScreen({ onBack }) {
         <h2 className="settings__section-title">Audio</h2>
         <label className="settings__row">
           <span>Sound effects</span>
-          <input type="checkbox" checked={settings.soundEnabled} onChange={handleSoundToggle} />
+          <input
+            type="checkbox"
+            checked={settings.soundEnabled}
+            onChange={handleSoundToggle}
+          />
         </label>
         <label className="settings__row">
           <span>Volume</span>
@@ -78,12 +82,16 @@ export function SettingsScreen({ onBack }) {
         <label className="settings__row">
           <span>Interface theme</span>
           <Button variant="secondary" onClick={handleThemeToggle}>
-            {settings.theme === 'dark' ? 'Dark' : 'Light'}
+            {settings.theme === "dark" ? "Dark" : "Light"}
           </Button>
         </label>
         <label className="settings__row">
           <span>Reduce motion</span>
-          <input type="checkbox" checked={settings.reducedMotion} onChange={handleReducedMotionToggle} />
+          <input
+            type="checkbox"
+            checked={settings.reducedMotion}
+            onChange={handleReducedMotionToggle}
+          />
         </label>
       </section>
 
@@ -108,7 +116,10 @@ export function SettingsScreen({ onBack }) {
           </div>
           <div>
             <strong>Mobile</strong>
-            <span>On-screen steer and pedal buttons appear automatically on touch devices</span>
+            <span>
+              On-screen steer and pedal buttons appear automatically on touch
+              devices
+            </span>
           </div>
         </div>
       </section>
@@ -118,7 +129,7 @@ export function SettingsScreen({ onBack }) {
         <div className="settings__row">
           <span>Reset all progress</span>
           <Button variant="danger" onClick={handleResetClick}>
-            {confirmingReset ? 'Confirm reset' : 'Reset'}
+            {confirmingReset ? "Confirm reset" : "Reset"}
           </Button>
         </div>
       </section>

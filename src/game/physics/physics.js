@@ -1,4 +1,4 @@
-import { clamp } from '../../utils/math.js';
+import { clamp } from "../../utils/math.js";
 
 export const PHYSICS_CONSTANTS = {
   BASE_MAX_SPEED: 260, // px/s
@@ -34,10 +34,15 @@ export function stepCarPhysics(state, input, stats, dt, offRoad = false) {
   const brake = clamp(input.brake ?? 0, 0, 1);
   const steer = clamp(input.steer ?? 0, -1, 1);
 
-  const maxSpeed = BASE_MAX_SPEED * (0.55 + stats.topSpeed * 0.75) * (offRoad ? OFF_ROAD_SPEED_FACTOR : 1);
+  const maxSpeed =
+    BASE_MAX_SPEED *
+    (0.55 + stats.topSpeed * 0.75) *
+    (offRoad ? OFF_ROAD_SPEED_FACTOR : 1);
   const accelRate = BASE_ACCEL * (0.5 + stats.acceleration * 0.9);
   const brakeRate = BASE_BRAKE * (0.5 + stats.braking * 0.9);
-  const frictionCoef = BASE_FRICTION * (1 + stats.weight * 0.25) + (offRoad ? OFF_ROAD_FRICTION_BONUS : 0);
+  const frictionCoef =
+    BASE_FRICTION * (1 + stats.weight * 0.25) +
+    (offRoad ? OFF_ROAD_FRICTION_BONUS : 0);
   const turnRate = BASE_TURN_RATE * (0.55 + stats.handling * 0.75);
 
   let { speed, heading, x, y } = state;
@@ -55,7 +60,11 @@ export function stepCarPhysics(state, input, stats, dt, offRoad = false) {
   speed = clamp(speed, minSpeed, maxSpeed);
 
   // Steering responsiveness scales with speed: near-stationary cars barely turn.
-  const speedFactor = clamp(Math.abs(speed) / maxSpeed, MIN_TURN_SPEED_FACTOR, 1);
+  const speedFactor = clamp(
+    Math.abs(speed) / maxSpeed,
+    MIN_TURN_SPEED_FACTOR,
+    1,
+  );
   const direction = speed >= 0 ? 1 : -1;
   heading += steer * turnRate * speedFactor * direction * dt;
 
@@ -66,5 +75,11 @@ export function stepCarPhysics(state, input, stats, dt, offRoad = false) {
 }
 
 export function createInitialCarState(x, y, heading) {
-  return { x, y, heading, speed: 0, maxSpeed: PHYSICS_CONSTANTS.BASE_MAX_SPEED };
+  return {
+    x,
+    y,
+    heading,
+    speed: 0,
+    maxSpeed: PHYSICS_CONSTANTS.BASE_MAX_SPEED,
+  };
 }

@@ -1,4 +1,4 @@
-import { distance } from '../../utils/math.js';
+import { distance } from "../../utils/math.js";
 
 const CHECKPOINT_RADIUS = 70;
 
@@ -26,18 +26,31 @@ export function createRaceProgress(totalCheckpoints, totalLaps) {
  */
 export function updateRaceProgress(progress, x, y, checkpoints, currentTime) {
   if (progress.finished) {
-    return { progress, checkpointHit: false, lapCompleted: false, raceFinished: false };
+    return {
+      progress,
+      checkpointHit: false,
+      lapCompleted: false,
+      raceFinished: false,
+    };
   }
 
   const target = checkpoints[progress.nextCheckpointIndex];
   const withinRange = distance(x, y, target.x, target.y) <= CHECKPOINT_RADIUS;
 
   if (!withinRange) {
-    return { progress, checkpointHit: false, lapCompleted: false, raceFinished: false };
+    return {
+      progress,
+      checkpointHit: false,
+      lapCompleted: false,
+      raceFinished: false,
+    };
   }
 
-  const isLastCheckpoint = progress.nextCheckpointIndex === progress.totalCheckpoints - 1;
-  const nextCheckpointIndex = isLastCheckpoint ? 0 : progress.nextCheckpointIndex + 1;
+  const isLastCheckpoint =
+    progress.nextCheckpointIndex === progress.totalCheckpoints - 1;
+  const nextCheckpointIndex = isLastCheckpoint
+    ? 0
+    : progress.nextCheckpointIndex + 1;
 
   if (!isLastCheckpoint) {
     return {
@@ -50,7 +63,10 @@ export function updateRaceProgress(progress, x, y, checkpoints, currentTime) {
 
   const lapTime = currentTime - progress.currentLapStartTime;
   const lapTimes = [...progress.lapTimes, lapTime];
-  const bestLapTime = progress.bestLapTime === null ? lapTime : Math.min(progress.bestLapTime, lapTime);
+  const bestLapTime =
+    progress.bestLapTime === null
+      ? lapTime
+      : Math.min(progress.bestLapTime, lapTime);
   const lapsCompleted = progress.lapsCompleted + 1;
   const raceFinished = lapsCompleted >= progress.totalLaps;
 

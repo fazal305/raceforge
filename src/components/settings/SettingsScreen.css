@@ -45,13 +45,13 @@
   min-height: 44px;
 }
 
-.settings__row input[type='checkbox'] {
+.settings__row input[type="checkbox"] {
   width: 20px;
   height: 20px;
   accent-color: var(--color-accent);
 }
 
-.settings__row input[type='range'] {
+.settings__row input[type="range"] {
   accent-color: var(--color-accent);
   flex: 1;
   max-width: 200px;

@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import { useGameStore, GAME_STATES } from '../../state/store.js';
-import { TRACKS } from '../../data/tracks.js';
-import { Button } from '../ui/Button.jsx';
-import { sfx } from '../../services/audio.js';
-import { formatTime } from '../../utils/format.js';
-import './Selection.css';
+import { useState } from "react";
+import { useGameStore, GAME_STATES } from "../../state/store.js";
+import { TRACKS } from "../../data/tracks.js";
+import { Button } from "../ui/Button.jsx";
+import { sfx } from "../../services/audio.js";
+import { formatTime } from "../../utils/format.js";
+import "./Selection.css";
 
 export function TrackSelection() {
   const setGameState = useGameStore((s) => s.setGameState);
   const selectedTrackId = useGameStore((s) => s.selectedTrackId);
   const setSelectedTrackId = useGameStore((s) => s.setSelectedTrackId);
   const unlockedTrackIds = useGameStore((s) => s.progression.unlockedTrackIds);
-  const bestRaceTimesByTrack = useGameStore((s) => s.progression.bestRaceTimesByTrack);
+  const bestRaceTimesByTrack = useGameStore(
+    (s) => s.progression.bestRaceTimesByTrack,
+  );
   const credits = useGameStore((s) => s.progression.credits);
   const unlockTrack = useGameStore((s) => s.unlockTrack);
   const [activeId, setActiveId] = useState(selectedTrackId);
@@ -41,7 +43,11 @@ export function TrackSelection() {
         <p className="selection__credits">{credits} credits</p>
       </header>
 
-      <div className="selection__grid" role="listbox" aria-label="Available tracks">
+      <div
+        className="selection__grid"
+        role="listbox"
+        aria-label="Available tracks"
+      >
         {TRACKS.map((track) => {
           const unlocked = unlockedTrackIds.includes(track.id);
           const isActive = activeId === track.id;
@@ -52,15 +58,19 @@ export function TrackSelection() {
               role="option"
               aria-selected={isActive}
               tabIndex={unlocked ? 0 : -1}
-              className={`selection-card ${isActive ? 'selection-card--active' : ''} ${!unlocked ? 'selection-card--locked' : ''}`}
+              className={`selection-card ${isActive ? "selection-card--active" : ""} ${!unlocked ? "selection-card--locked" : ""}`}
               onClick={() => handlePick(track)}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handlePick(track)}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && handlePick(track)
+              }
             >
               <h2 className="selection-card__name">{track.name}</h2>
               <p className="selection-card__tagline">
                 {track.difficulty} &middot; {track.laps} laps
               </p>
-              <p className="selection-card__best">{best ? `Best: ${formatTime(best)}` : 'No time set'}</p>
+              <p className="selection-card__best">
+                {best ? `Best: ${formatTime(best)}` : "No time set"}
+              </p>
               {!unlocked && (
                 <Button
                   variant="secondary"
@@ -80,7 +90,10 @@ export function TrackSelection() {
       </div>
 
       <footer className="selection__footer">
-        <Button variant="ghost" onClick={() => setGameState(GAME_STATES.CAR_SELECTION)}>
+        <Button
+          variant="ghost"
+          onClick={() => setGameState(GAME_STATES.CAR_SELECTION)}
+        >
           Back
         </Button>
         <Button variant="primary" onClick={handleStartRace}>

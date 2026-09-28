@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useGameStore, GAME_STATES } from '../../state/store.js';
-import { CARS } from '../../data/cars.js';
-import { Button } from '../ui/Button.jsx';
-import { StatBar } from '../ui/StatBar.jsx';
-import { sfx } from '../../services/audio.js';
-import './Selection.css';
+import { useState } from "react";
+import { useGameStore, GAME_STATES } from "../../state/store.js";
+import { CARS } from "../../data/cars.js";
+import { Button } from "../ui/Button.jsx";
+import { StatBar } from "../ui/StatBar.jsx";
+import { sfx } from "../../services/audio.js";
+import "./Selection.css";
 
 export function CarSelection() {
   const setGameState = useGameStore((s) => s.setGameState);
@@ -40,7 +40,11 @@ export function CarSelection() {
         <p className="selection__credits">{credits} credits</p>
       </header>
 
-      <div className="selection__grid" role="listbox" aria-label="Available cars">
+      <div
+        className="selection__grid"
+        role="listbox"
+        aria-label="Available cars"
+      >
         {CARS.map((car) => {
           const unlocked = unlockedCarIds.includes(car.id);
           const isActive = activeId === car.id;
@@ -50,10 +54,12 @@ export function CarSelection() {
               role="option"
               aria-selected={isActive}
               tabIndex={unlocked ? 0 : -1}
-              className={`selection-card ${isActive ? 'selection-card--active' : ''} ${!unlocked ? 'selection-card--locked' : ''}`}
+              className={`selection-card ${isActive ? "selection-card--active" : ""} ${!unlocked ? "selection-card--locked" : ""}`}
               onClick={() => handlePick(car)}
-              onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handlePick(car)}
-              style={{ '--card-accent': car.color }}
+              onKeyDown={(e) =>
+                (e.key === "Enter" || e.key === " ") && handlePick(car)
+              }
+              style={{ "--card-accent": car.color }}
             >
               <div className="selection-card__swatch" />
               <h2 className="selection-card__name">{car.name}</h2>

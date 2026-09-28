@@ -1,12 +1,12 @@
 const KEY_MAP = {
-  ArrowUp: 'throttle',
-  KeyW: 'throttle',
-  ArrowDown: 'brake',
-  KeyS: 'brake',
-  ArrowLeft: 'left',
-  KeyA: 'left',
-  ArrowRight: 'right',
-  KeyD: 'right',
+  ArrowUp: "throttle",
+  KeyW: "throttle",
+  ArrowDown: "brake",
+  KeyS: "brake",
+  ArrowLeft: "left",
+  KeyA: "left",
+  ArrowRight: "right",
+  KeyD: "right",
 };
 
 /**
@@ -26,9 +26,9 @@ export class InputController {
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
 
-    window.addEventListener('keydown', this.handleKeyDown);
-    window.addEventListener('keyup', this.handleKeyUp);
-    window.addEventListener('blur', this.handleBlur);
+    window.addEventListener("keydown", this.handleKeyDown);
+    window.addEventListener("keyup", this.handleKeyUp);
+    window.addEventListener("blur", this.handleBlur);
   }
 
   handleKeyDown(event) {
@@ -76,8 +76,8 @@ export class InputController {
   }
 
   destroy() {
-    window.removeEventListener('keydown', this.handleKeyDown);
-    window.removeEventListener('keyup', this.handleKeyUp);
-    window.removeEventListener('blur', this.handleBlur);
+    window.removeEventListener("keydown", this.handleKeyDown);
+    window.removeEventListener("keyup", this.handleKeyUp);
+    window.removeEventListener("blur", this.handleBlur);
   }
 }

@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { useGameStore, GAME_STATES } from '../../state/store.js';
-import { getTrackById } from '../../data/tracks.js';
-import { formatTime } from '../../utils/format.js';
-import { Button } from '../ui/Button.jsx';
-import { sfx } from '../../services/audio.js';
-import './ResultsScreen.css';
+import { useEffect } from "react";
+import { useGameStore, GAME_STATES } from "../../state/store.js";
+import { getTrackById } from "../../data/tracks.js";
+import { formatTime } from "../../utils/format.js";
+import { Button } from "../ui/Button.jsx";
+import { sfx } from "../../services/audio.js";
+import "./ResultsScreen.css";
 
-const ORDINAL = { 1: '1st', 2: '2nd', 3: '3rd' };
+const ORDINAL = { 1: "1st", 2: "2nd", 3: "3rd" };
 
 export function ResultsScreen() {
   const results = useGameStore((s) => s.lastRaceResults);
@@ -44,7 +44,9 @@ export function ResultsScreen() {
           {ORDINAL[results.playerPosition] ?? `${results.playerPosition}th`}
         </h1>
 
-        {results.isPersonalBest && <p className="results__pb">New personal best</p>}
+        {results.isPersonalBest && (
+          <p className="results__pb">New personal best</p>
+        )}
 
         <dl className="results__stats">
           <div>
@@ -71,7 +73,12 @@ export function ResultsScreen() {
 
         <ol className="results__standings" aria-label="Final standings">
           {results.standings.map((entry) => (
-            <li key={entry.id} className={entry.id === 'player' ? 'results__standing--player' : ''}>
+            <li
+              key={entry.id}
+              className={
+                entry.id === "player" ? "results__standing--player" : ""
+              }
+            >
               <span>{entry.position}</span>
               <span>{entry.name}</span>
             </li>

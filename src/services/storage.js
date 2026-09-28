@@ -1,4 +1,4 @@
-const STORAGE_PREFIX = 'raceforge';
+const STORAGE_PREFIX = "raceforge";
 const SCHEMA_VERSION = 1;
 
 function buildKey(key) {
@@ -7,8 +7,8 @@ function buildKey(key) {
 
 function isStorageAvailable() {
   try {
-    const testKey = buildKey('__probe__');
-    window.localStorage.setItem(testKey, '1');
+    const testKey = buildKey("__probe__");
+    window.localStorage.setItem(testKey, "1");
     window.localStorage.removeItem(testKey);
     return true;
   } catch {
@@ -16,7 +16,7 @@ function isStorageAvailable() {
   }
 }
 
-const available = typeof window !== 'undefined' && isStorageAvailable();
+const available = typeof window !== "undefined" && isStorageAvailable();
 
 /**
  * Thin, safe wrapper around localStorage. Every value is stored with a

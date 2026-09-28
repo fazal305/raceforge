@@ -5,10 +5,10 @@
  */
 export const CARS = [
   {
-    id: 'balanced',
-    name: 'Meridian GT',
-    tagline: 'No weakness, no edge.',
-    color: '#f2792b',
+    id: "balanced",
+    name: "Meridian GT",
+    tagline: "No weakness, no edge.",
+    color: "#f2792b",
     unlockedByDefault: true,
     stats: {
       acceleration: 0.6,
@@ -19,10 +19,10 @@ export const CARS = [
     },
   },
   {
-    id: 'speed',
-    name: 'Vantail SR',
-    tagline: 'Blistering on the straights, twitchy in the corners.',
-    color: '#e5484d',
+    id: "speed",
+    name: "Vantail SR",
+    tagline: "Blistering on the straights, twitchy in the corners.",
+    color: "#e5484d",
     unlockedByDefault: true,
     stats: {
       acceleration: 0.75,
@@ -33,10 +33,10 @@ export const CARS = [
     },
   },
   {
-    id: 'handling',
-    name: 'Corner Wasp',
-    tagline: 'Lives for the apex, gives up top end.',
-    color: '#3ecf8e',
+    id: "handling",
+    name: "Corner Wasp",
+    tagline: "Lives for the apex, gives up top end.",
+    color: "#3ecf8e",
     unlockedByDefault: true,
     stats: {
       acceleration: 0.55,
@@ -47,10 +47,10 @@ export const CARS = [
     },
   },
   {
-    id: 'brawler',
-    name: 'Ironclad HX',
-    tagline: 'Heavy, brutal off the line, unlockable.',
-    color: '#6fb7ff',
+    id: "brawler",
+    name: "Ironclad HX",
+    tagline: "Heavy, brutal off the line, unlockable.",
+    color: "#6fb7ff",
     unlockedByDefault: false,
     unlockCost: 1200,
     stats: {

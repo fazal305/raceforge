@@ -1,5 +1,5 @@
-import { formatTime, formatSpeed } from '../../utils/format.js';
-import './HUD.css';
+import { formatTime, formatSpeed } from "../../utils/format.js";
+import "./HUD.css";
 
 export function HUD({ hud, onPause }) {
   if (!hud) return null;
@@ -8,20 +8,40 @@ export function HUD({ hud, onPause }) {
   return (
     <div className="hud">
       <div className="hud__top">
-        <div className="hud__lap" aria-label={`Lap ${hud.lap} of ${hud.totalLaps}`}>
+        <div
+          className="hud__lap"
+          aria-label={`Lap ${hud.lap} of ${hud.totalLaps}`}
+        >
           <span className="hud__lap-value">
             LAP {hud.lap}/{hud.totalLaps}
           </span>
-          <div className="hud__checkpoint-track" role="progressbar" aria-valuenow={Math.round(checkpointProgress * 100)} aria-valuemin={0} aria-valuemax={100}>
-            <div className="hud__checkpoint-fill" style={{ width: `${checkpointProgress * 100}%` }} />
+          <div
+            className="hud__checkpoint-track"
+            role="progressbar"
+            aria-valuenow={Math.round(checkpointProgress * 100)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div
+              className="hud__checkpoint-fill"
+              style={{ width: `${checkpointProgress * 100}%` }}
+            />
           </div>
         </div>
 
-        <button type="button" className="hud__pause" onClick={onPause} aria-label="Pause race">
+        <button
+          type="button"
+          className="hud__pause"
+          onClick={onPause}
+          aria-label="Pause race"
+        >
           <span aria-hidden="true">II</span>
         </button>
 
-        <div className="hud__position" aria-label={`Position ${hud.position} of ${hud.totalRacers}`}>
+        <div
+          className="hud__position"
+          aria-label={`Position ${hud.position} of ${hud.totalRacers}`}
+        >
           <span className="hud__position-value">{hud.position}</span>
           <span className="hud__position-total">/{hud.totalRacers}</span>
         </div>

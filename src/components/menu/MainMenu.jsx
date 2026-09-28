@@ -1,7 +1,7 @@
-import { useGameStore, GAME_STATES } from '../../state/store.js';
-import { Button } from '../ui/Button.jsx';
-import { sfx, initAudio } from '../../services/audio.js';
-import './MainMenu.css';
+import { useGameStore, GAME_STATES } from "../../state/store.js";
+import { Button } from "../ui/Button.jsx";
+import { sfx, initAudio } from "../../services/audio.js";
+import "./MainMenu.css";
 
 export function MainMenu() {
   const setGameState = useGameStore((s) => s.setGameState);
@@ -24,7 +24,9 @@ export function MainMenu() {
       <div className="main-menu__content">
         <p className="main-menu__eyebrow">Arcade Racer</p>
         <h1 className="main-menu__title">RACEFORGE</h1>
-        <p className="main-menu__subtitle">Procedural tracks. Real physics feel. No two laps alike.</p>
+        <p className="main-menu__subtitle">
+          Procedural tracks. Real physics feel. No two laps alike.
+        </p>
 
         <div className="main-menu__actions">
           <Button variant="primary" onClick={handleStart} autoFocus>

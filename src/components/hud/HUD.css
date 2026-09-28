@@ -139,3 +139,13 @@
     font-size: var(--text-xl);
   }
 }
+
+/* On touch devices, MobileControls renders BRAKE/GAS pedals pinned to the
+   same bottom-right corner as the timer/speed readout (both use
+   `position: absolute; inset: 0` with bottom-right alignment) — without this,
+   the pedal buttons visually collide with the speed display. */
+@media (pointer: coarse) {
+  .hud__bottom {
+    margin-bottom: 96px;
+  }
+}

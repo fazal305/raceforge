@@ -1,4 +1,4 @@
-import { nearestCenterlinePoint } from '../tracks/trackGenerator.js';
+import { nearestCenterlinePoint } from "../tracks/trackGenerator.js";
 
 export function circlesOverlap(ax, ay, aRadius, bx, by, bRadius) {
   const dx = bx - ax;
@@ -40,6 +40,13 @@ export function isOffRoad(track, x, y) {
 
 export function checkObstacleCollisions(track, carX, carY, carRadius) {
   return track.obstacles.filter((obstacle) =>
-    circlesOverlap(carX, carY, carRadius, obstacle.x, obstacle.y, obstacle.radius),
+    circlesOverlap(
+      carX,
+      carY,
+      carRadius,
+      obstacle.x,
+      obstacle.y,
+      obstacle.radius,
+    ),
   );
 }

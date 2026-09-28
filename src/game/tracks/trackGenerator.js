@@ -1,5 +1,5 @@
-import { createRng, rangeFrom } from '../../utils/random.js';
-import { catmullRom, distance } from '../../utils/math.js';
+import { createRng, rangeFrom } from "../../utils/random.js";
+import { catmullRom, distance } from "../../utils/math.js";
 
 const SAMPLES_PER_SEGMENT = 24;
 const CHECKPOINT_COUNT = 8;
@@ -9,7 +9,8 @@ function buildControlPoints(rng, config) {
   const { controlPoints, radius, irregularity } = config;
   for (let i = 0; i < controlPoints; i += 1) {
     const angle = (i / controlPoints) * Math.PI * 2;
-    const jitteredRadius = radius * (1 + rangeFrom(rng, -irregularity, irregularity));
+    const jitteredRadius =
+      radius * (1 + rangeFrom(rng, -irregularity, irregularity));
     const angleJitter = rangeFrom(rng, -0.12, 0.12) * (Math.PI / controlPoints);
     points.push({
       x: Math.cos(angle + angleJitter) * jitteredRadius,
@@ -40,11 +41,15 @@ function withArcLength(centerline) {
   for (let i = 1; i < centerline.length; i += 1) {
     const prev = centerline[i - 1];
     const curr = centerline[i];
-    cumulative.push(cumulative[i - 1] + distance(prev.x, prev.y, curr.x, curr.y));
+    cumulative.push(
+      cumulative[i - 1] + distance(prev.x, prev.y, curr.x, curr.y),
+    );
   }
   const last = centerline[centerline.length - 1];
   const first = centerline[0];
-  const closingLength = cumulative[cumulative.length - 1] + distance(last.x, last.y, first.x, first.y);
+  const closingLength =
+    cumulative[cumulative.length - 1] +
+    distance(last.x, last.y, first.x, first.y);
   return { cumulative, length: closingLength };
 }
 
@@ -53,7 +58,10 @@ function buildCheckpoints(centerline, cumulative, totalLength) {
   for (let c = 0; c < CHECKPOINT_COUNT; c += 1) {
     const targetDistance = (c / CHECKPOINT_COUNT) * totalLength;
     let index = 0;
-    while (index < cumulative.length - 1 && cumulative[index] < targetDistance) {
+    while (
+      index < cumulative.length - 1 &&
+      cumulative[index] < targetDistance
+    ) {
       index += 1;
     }
     const point = centerline[index];
@@ -80,7 +88,8 @@ function scatterObstacles(rng, centerline, roadWidth, density) {
     const next = centerline[(index + 1) % centerline.length];
     const heading = Math.atan2(next.y - point.y, next.x - point.x);
     const normalAngle = heading + Math.PI / 2;
-    const offset = rangeFrom(rng, roadWidth * 0.2, roadWidth * 0.4) * (rng() > 0.5 ? 1 : -1);
+    const offset =
+      rangeFrom(rng, roadWidth * 0.2, roadWidth * 0.4) * (rng() > 0.5 ? 1 : -1);
     obstacles.push({
       x: point.x + Math.cos(normalAngle) * offset,
       y: point.y + Math.sin(normalAngle) * offset,
@@ -119,7 +128,12 @@ export function generateTrack(config) {
   const centerline = sampleClosedSpline(controlPoints);
   const { cumulative, length } = withArcLength(centerline);
   const checkpoints = buildCheckpoints(centerline, cumulative, length);
-  const obstacles = scatterObstacles(rng, centerline, config.roadWidth, config.obstacleDensity);
+  const obstacles = scatterObstacles(
+    rng,
+    centerline,
+    config.roadWidth,
+    config.obstacleDensity,
+  );
   const bounds = computeBounds(centerline, config.roadWidth * 2);
 
   const start = centerline[0];
@@ -157,6 +171,12 @@ export function nearestCenterlinePoint(track, x, y) {
   const next = track.centerline[(bestIndex + 1) % track.centerline.length];
   const heading = Math.atan2(next.y - point.y, next.x - point.x);
   const toCar = Math.atan2(y - point.y, x - point.x);
-  const lateral = Math.sqrt(bestDistance) * Math.sign(Math.sin(toCar - heading) || 1);
-  return { index: bestIndex, distance: Math.sqrt(bestDistance), lateral, heading };
+  const lateral =
+    Math.sqrt(bestDistance) * Math.sign(Math.sin(toCar - heading) || 1);
+  return {
+    index: bestIndex,
+    distance: Math.sqrt(bestDistance),
+    lateral,
+    heading,
+  };
 }

@@ -1,5 +1,5 @@
-import { useCallback, useRef } from 'react';
-import './MobileControls.css';
+import { useCallback, useRef } from "react";
+import "./MobileControls.css";
 
 /**
  * Touch-only control layer. Deliberately not a shrunken version of the
@@ -38,18 +38,18 @@ export function MobileControls({ onInputChange }) {
         <button
           type="button"
           className="mobile-controls__btn"
-          onPointerDown={(e) => handlePress(e, 'steer', -1)}
-          onPointerUp={() => handleRelease('steer')}
-          onPointerCancel={() => handleRelease('steer')}
+          onPointerDown={(e) => handlePress(e, "steer", -1)}
+          onPointerUp={() => handleRelease("steer")}
+          onPointerCancel={() => handleRelease("steer")}
         >
           &#8592;
         </button>
         <button
           type="button"
           className="mobile-controls__btn"
-          onPointerDown={(e) => handlePress(e, 'steer', 1)}
-          onPointerUp={() => handleRelease('steer')}
-          onPointerCancel={() => handleRelease('steer')}
+          onPointerDown={(e) => handlePress(e, "steer", 1)}
+          onPointerUp={() => handleRelease("steer")}
+          onPointerCancel={() => handleRelease("steer")}
         >
           &#8594;
         </button>
@@ -58,18 +58,18 @@ export function MobileControls({ onInputChange }) {
         <button
           type="button"
           className="mobile-controls__btn mobile-controls__btn--brake"
-          onPointerDown={(e) => handlePress(e, 'brake', 1)}
-          onPointerUp={() => handleRelease('brake')}
-          onPointerCancel={() => handleRelease('brake')}
+          onPointerDown={(e) => handlePress(e, "brake", 1)}
+          onPointerUp={() => handleRelease("brake")}
+          onPointerCancel={() => handleRelease("brake")}
         >
           BRAKE
         </button>
         <button
           type="button"
           className="mobile-controls__btn mobile-controls__btn--throttle"
-          onPointerDown={(e) => handlePress(e, 'throttle', 1)}
-          onPointerUp={() => handleRelease('throttle')}
-          onPointerCancel={() => handleRelease('throttle')}
+          onPointerDown={(e) => handlePress(e, "throttle", 1)}
+          onPointerUp={() => handleRelease("throttle")}
+          onPointerCancel={() => handleRelease("throttle")}
         >
           GAS
         </button>

@@ -1,6 +1,6 @@
-import { Component } from 'react';
-import { Button } from './ui/Button.jsx';
-import './ErrorBoundary.css';
+import { Component } from "react";
+import { Button } from "./ui/Button.jsx";
+import "./ErrorBoundary.css";
 
 export class ErrorBoundary extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
-    console.error('RaceForge crashed:', error, info);
+    console.error("RaceForge crashed:", error, info);
   }
 
   handleReset = () => {

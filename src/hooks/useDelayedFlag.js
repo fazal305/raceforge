@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 /**
  * Mirrors `active` but only flips true after `delay` ms, and flips back to
