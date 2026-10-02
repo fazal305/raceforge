@@ -5,10 +5,6 @@ A browser-based arcade racer built with React and Canvas 2D. Procedurally genera
 **Live:** https://raceforge-game.netlify.app
 **Repo:** https://github.com/fazal305/raceforge
 
-## Screenshots
-
-_Not yet captured — add screenshots or a short gameplay clip here once available._
-
 ## Features
 
 - Procedurally generated closed-loop tracks (seeded, so a given track is always the same layout)
